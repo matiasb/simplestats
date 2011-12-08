@@ -66,6 +66,8 @@ Notice the expected row value format.
 Running the Tests
 -----------------
 
+To run the server test suite:
+
     $ trial server
 
 Samples Generator
