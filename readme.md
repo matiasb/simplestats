@@ -18,7 +18,7 @@ SimpleStats is a simple example of a twisted server. It also uses:
 Get SimpleStats
 ---------------
 
-    $ git clone git://github.com/matiasb/simplestats.git
+    $ git clone git@bitbucket.org:matiasb/simple-stats.git
 
 
 How to set up SimpleStats?
@@ -61,12 +61,22 @@ Telnet Example Session
     ["var1", 1322721979, 8]
     --OK
 
+Notice the expected row value format.
+
 Running the Tests
 -----------------
 
-To run the server test suite:
-
     $ trial server
 
+Samples Generator
+-----------------
+
+You will find a simple script to generate random samples that could be used
+as input for simplestats:
+
+    $ python misc/sample_generator.py 10 
+
+You can specify the number of samples to return (10 in the example above,
+20 by default). Each row will get a random timestamp in the last 7 days.
 
 [1] http://www.virtualenv.org/
