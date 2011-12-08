@@ -18,7 +18,7 @@ SimpleStats is a simple example of a twisted server. It also uses:
 Get SimpleStats
 ---------------
 
-    $ git clone git@bitbucket.org:matiasb/simple-stats.git
+    $ git clone git://github.com/matiasb/simplestats.git
 
 
 How to set up SimpleStats?
