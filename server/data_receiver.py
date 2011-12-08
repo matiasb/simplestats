@@ -13,9 +13,11 @@ class DataReceiver(LineReceiver):
     """Receiver for JSON tuples data."""
 
     def connectionMade(self):
+        """Send client a welcome message."""
         self.sendLine(HINT)
 
     def lineReceived(self, line):
+        """Process a line received from the client."""
         # load json
         logging.debug('Received data: %s', line)
         try:
