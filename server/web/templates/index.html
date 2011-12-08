@@ -1,0 +1,110 @@
+<html xmlns:t="http://twistedmatrix.com/ns/twisted.web.template/0.1">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SimpleStats</title>
+    <link rel="stylesheet" href="/static/css/screen.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap.css" />
+    <!--[if lte IE 8]>
+    <script language="javascript" type="text/javascript" src="/static/js/excanvas.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.flot.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.flot.selection.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.flot.crosshair.js"></script>
+</head>
+
+<body>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
+            <a href="/" class="brand">SimpleStats</a>
+            <ul class="nav">
+                <li class="active"><a href="/">Home</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container main-content">
+            <h1>SimpleStats <small>a twisted proof of concept</small></h1>
+
+            <div class="row">
+                <div class="span10">
+                    <div id="placeholder"></div>
+                    <span class="help-block">
+                        Hover on a point to check its value.
+                        Click and drag to zoom (<a href="#" id="reset">reset</a>).
+                    </span>
+
+                    <h6>Full data overview</h6>
+                    <div id="overview"></div>
+
+                    <span class="help-block">Click and drag to zoom.</span>
+                </div>
+
+                <div class="span6">
+
+                    <table class="table condensed-table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Count</th>
+                            <th>Max</th>
+                            <th>Min</th>
+                            <th>Avg</th>
+                            <th>Show?</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr t:render="series_row">
+                            <th><t:slot name="name"/></th>
+                            <td><t:slot name="count"/></td>
+                            <td><t:slot name="max"/></td>
+                            <td><t:slot name="min"/></td>
+                            <td><t:slot name="avg"/></td>
+                            <td><input class="series-choice" type="checkbox" checked="checked"><t:attr name="name"><t:slot name="name" /></t:attr></input></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <h6>Upload data</h6>
+                    <form action="." class="form-stacked" method="POST" enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="clearfix">
+                                <label for="fileInput">Upload a JSON data file</label>
+                                <div class="input">
+                                    <input type="file" name="data_file" class="input-file" />
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="actions">
+                            <input type="hidden" name="upload" />
+                            <button class="btn primary" type="submit">Upload</button>
+                        </div>
+                    </form>
+
+                    <h6>Download data</h6>
+                    <form class="form-stacked" action="." method="POST">
+                    <p>Download all data as a JSON file.</p>
+                    <div class="actions">
+                        <input type="hidden" name="download" />
+                        <button class="btn primary" type="submit">Download</button>
+                    </div>
+                    </form>
+                </div>
+                <div id="choices">
+                </div>
+            </div>
+
+            <footer>
+                <p>Matías Bordese 2011</p>
+            </footer>
+
+    </div>
+
+<script type="text/javascript" t:render="json_data" ></script>
+<script type="text/javascript" src="/static/js/chart.js"></script>
+
+</body>
+</html>
